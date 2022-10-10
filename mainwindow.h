@@ -6,6 +6,9 @@
 #include <QTabWidget>
 #include <QMessageBox>
 #include <QButtonGroup>
+#include <QMouseEvent>
+#include <QResizeEvent>
+#include <QCursor>
 #include "steam_api.h"
 
 QT_BEGIN_NAMESPACE
@@ -29,7 +32,12 @@ private:
   Ui::MainWindow *ui;
   QButtonGroup* m_LeftBtnGroup;
 
+  QPoint m_PrevPos;
+
 private:
     void resizeEvent(QResizeEvent* event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+
 };
 #endif // MAINWINDOW_H

@@ -46,6 +46,24 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     }
 }
 
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    m_PrevPos = QCursor::pos();
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if(event->buttons() == Qt::MouseButton::LeftButton)
+    {
+       if(isMaximized())
+           return;
+       auto offset = m_PrevPos - QCursor::pos();
+       m_PrevPos = QCursor::pos();
+       move(pos() - offset);
+    }
+}
+
+
 void MainWindow::OnMaxmizeBtnClick()
 {
     if(isMaximized())

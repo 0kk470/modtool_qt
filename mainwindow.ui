@@ -1459,7 +1459,7 @@ QLineEdit:disabled {
                     <property name="geometry">
                      <rect>
                       <x>139</x>
-                      <y>151</y>
+                      <y>200</y>
                       <width>69</width>
                       <height>25</height>
                      </rect>
@@ -1512,7 +1512,7 @@ QPushButton:disabled {
                     <property name="geometry">
                      <rect>
                       <x>33</x>
-                      <y>167</y>
+                      <y>152</y>
                       <width>100</width>
                       <height>25</height>
                      </rect>
