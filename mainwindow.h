@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QTabWidget>
-#include "isteamugc.h"
+#include <QMessageBox>
+#include <QButtonGroup>
+#include "steam_api.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,8 +22,14 @@ public:
 
 private slots:
   void OnCloseBtnClick();
+  void OnMaxmizeBtnClick();
+  void OnPageBtnClick(int idx);
 
 private:
   Ui::MainWindow *ui;
+  QButtonGroup* m_LeftBtnGroup;
+
+private:
+    void resizeEvent(QResizeEvent* event);
 };
 #endif // MAINWINDOW_H

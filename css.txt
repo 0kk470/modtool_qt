@@ -76,6 +76,9 @@ QPushButton:hover {
 QPushButton:pressed {	
 	background-color: rgba(0,0,0,0);
 }
+QPushButton:checked {	
+	background-color: red;
+}
 
 						------> BUTTON: Start, Save, Close, Restore, Connect, Edit:
 
