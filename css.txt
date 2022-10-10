@@ -48,6 +48,11 @@ QLineEdit:disabled {
 	border-radius:4px;
 	background:rgb(112,112,112);
 }
+
+QLineEdit:focus
+{
+    border: 2px solid #006080;
+}
 ----------------------------------------------------------------------------------------------
 
 

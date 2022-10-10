@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bn_close, &QPushButton::clicked, this, &MainWindow::OnCloseBtnClick);
     connect(ui->bn_min, &QPushButton::clicked, this, &MainWindow::showMinimized);
     connect(ui->bn_max, &QPushButton::clicked, this, &MainWindow::OnMaxmizeBtnClick);
+    connect(ui->browser_btn, &QPushButton::clicked, this, &MainWindow::OnModPathBtnClick);
 
     m_LeftBtnGroup = new QButtonGroup(this);
     m_LeftBtnGroup->addButton(ui->bn_home, 0);
@@ -92,6 +93,22 @@ void MainWindow::OnPageBtnClick(int idx)
     {
         ui->stackedWidget->widget(i)->setVisible(i == idx);
     }
+}
+
+void MainWindow::OnModPathBtnClick()
+{
+    QString dirName = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
+                                                "/home",
+                                                QFileDialog::ShowDirsOnly
+                                                | QFileDialog::DontResolveSymlinks);
+    ui->file_path->setText(dirName);
+}
+
+void MainWindow::OnUploadBtnClick()
+{
+    AppId_t appId = SteamUtils()->GetAppID();
+    SteamAPICall_t handle = SteamUGC()->CreateItem(appId,EWorkshopFileType::k_EWorkshopFileTypeCommunity);
+    //TODO
 }
 
 

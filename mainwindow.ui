@@ -1158,197 +1158,160 @@ p, li { white-space: pre-wrap; }
                 <property name="styleSheet">
                  <string notr="true">background:rgb(91,90,90);</string>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_8">
-                 <property name="spacing">
-                  <number>5</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>5</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>5</number>
-                 </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
                  <item>
-                  <widget class="QLabel" name="lab_cloud_main">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>55</height>
-                    </size>
+                  <widget class="QScrollArea" name="scrollArea">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
                    </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>55</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI</family>
-                     <pointsize>24</pointsize>
-                    </font>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-	color:rgb(255,255,255);
-}</string>
-                   </property>
-                   <property name="text">
-                    <string>Mod上传</string>
-                   </property>
-                   <property name="textFormat">
-                    <enum>Qt::RichText</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="frame_2">
-                   <property name="enabled">
+                   <property name="widgetResizable">
                     <bool>true</bool>
                    </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>235</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>235</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Segoe UI</family>
-                     <pointsize>12</pointsize>
-                    </font>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <widget class="QLabel" name="label_2">
+                   <widget class="QWidget" name="scrollAreaWidgetContents_2">
                     <property name="geometry">
                      <rect>
-                      <x>10</x>
-                      <y>10</y>
-                      <width>100</width>
-                      <height>25</height>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>683</width>
+                      <height>600</height>
                      </rect>
                     </property>
                     <property name="minimumSize">
                      <size>
-                      <width>100</width>
-                      <height>0</height>
+                      <width>0</width>
+                      <height>600</height>
                      </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>14</pointsize>
-                     </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">color:rgb(255,255,255);</string>
+                     <string notr="true">QScrollBar:vertical {
+	background:rgb(123,123,123);
+    	width:20px;
+    	margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {
+    	background:rgb(0,143,170);
+}
+QScrollBar::add-page:vertical {
+ 	background:rgb(51,51,51);
+}
+QScrollBar::sub-page:vertical {
+ 	background:rgb(51,51,51);
+}</string>
                     </property>
-                    <property name="text">
-                     <string>Client ID :</string>
-                    </property>
-                   </widget>
-                   <widget class="QLabel" name="label_3">
-                    <property name="geometry">
-                     <rect>
-                      <x>10</x>
-                      <y>41</y>
-                      <width>123</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>100</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>14</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(255,255,255);</string>
-                    </property>
-                    <property name="text">
-                     <string>Server Adress :</string>
-                    </property>
-                   </widget>
-                   <widget class="QLabel" name="label_4">
-                    <property name="geometry">
-                     <rect>
-                      <x>10</x>
-                      <y>72</y>
-                      <width>100</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>100</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>14</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(255,255,255);</string>
-                    </property>
-                    <property name="text">
-                     <string>Proxy :</string>
-                    </property>
-                   </widget>
-                   <widget class="QLineEdit" name="line_cloud_proxy">
-                    <property name="geometry">
-                     <rect>
-                      <x>139</x>
-                      <y>72</y>
-                      <width>400</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>400</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>500</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit {
+                    <layout class="QVBoxLayout" name="verticalLayout_12">
+                     <item>
+                      <widget class="QFrame" name="frame_2">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>235</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Segoe UI</family>
+                         <pointsize>12</pointsize>
+                        </font>
+                       </property>
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_8">
+                        <item>
+                         <widget class="QLabel" name="title_upload">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>60</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Arial Black</family>
+                            <pointsize>15</pointsize>
+                            <weight>10</weight>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(255,255,255);
+font: 87 15pt &quot;Arial Black&quot;;</string>
+                          </property>
+                          <property name="text">
+                           <string>Mod上传</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="Input_1" native="true">
+                          <property name="layoutDirection">
+                           <enum>Qt::LeftToRight</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_7">
+                           <item>
+                            <widget class="QLabel" name="label_modid">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Arial Black</family>
+                               <pointsize>9</pointsize>
+                               <weight>10</weight>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color:rgb(255,255,255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>Mod Id</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="input">
+                             <property name="minimumSize">
+                              <size>
+                               <width>400</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>500</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
 	color:rgb(255,255,255);
 	border:2px solid rgb(51,51,51);
 	border-radius:4px;
@@ -1360,130 +1323,102 @@ QLineEdit:disabled {
 	border:2px solid rgb(112,112,112);
 	border-radius:4px;
 	background:rgb(112,112,112);
-}</string>
-                    </property>
-                   </widget>
-                   <widget class="QLineEdit" name="line_cloud_id">
-                    <property name="enabled">
-                     <bool>true</bool>
-                    </property>
-                    <property name="geometry">
-                     <rect>
-                      <x>139</x>
-                      <y>10</y>
-                      <width>400</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>400</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>500</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit {
-	color:rgb(255,255,255);
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;
-	background:rgb(51,51,51);
 }
 
-QLineEdit:disabled {
-	color:rgb(255,255,255);
-	border:2px solid rgb(112,112,112);
-	border-radius:4px;
-	background:rgb(112,112,112);
+QLineEdit:focus
+{
+    border: 2px solid #006080;
 }</string>
-                    </property>
-                    <property name="placeholderText">
-                     <string>创意工坊id...</string>
-                    </property>
-                   </widget>
-                   <widget class="QLineEdit" name="line_cloud_adress">
-                    <property name="geometry">
-                     <rect>
-                      <x>139</x>
-                      <y>41</y>
-                      <width>400</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>400</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>500</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QLineEdit {
-	color:rgb(255,255,255);
-	border:2px solid rgb(51,51,51);
-	border-radius:4px;
-	background:rgb(51,51,51);
-}
-
-QLineEdit:disabled {
-	color:rgb(255,255,255);
-	border:2px solid rgb(112,112,112);
-	border-radius:4px;
-	background:rgb(112,112,112);
-}</string>
-                    </property>
-                   </widget>
-                   <widget class="QPushButton" name="bn_cloud_connect">
-                    <property name="geometry">
-                     <rect>
-                      <x>139</x>
-                      <y>200</y>
-                      <width>69</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>69</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>69</width>
-                      <height>25</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>12</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton {
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="Input_2" native="true">
+                          <property name="layoutDirection">
+                           <enum>Qt::LeftToRight</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_9">
+                           <item>
+                            <widget class="QWidget" name="file_browser_widget" native="true">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>40</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>200</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="layoutDirection">
+                              <enum>Qt::LeftToRight</enum>
+                             </property>
+                             <property name="autoFillBackground">
+                              <bool>false</bool>
+                             </property>
+                             <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="0,0,0">
+                              <property name="spacing">
+                               <number>0</number>
+                              </property>
+                              <property name="sizeConstraint">
+                               <enum>QLayout::SetDefaultConstraint</enum>
+                              </property>
+                              <property name="leftMargin">
+                               <number>0</number>
+                              </property>
+                              <item>
+                               <widget class="QLabel" name="file_title">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>60</width>
+                                  <height>0</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>60</width>
+                                  <height>60</height>
+                                 </size>
+                                </property>
+                                <property name="font">
+                                 <font>
+                                  <family>Arial Black</family>
+                                  <pointsize>9</pointsize>
+                                  <weight>10</weight>
+                                  <italic>false</italic>
+                                  <bold>false</bold>
+                                 </font>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">color:rgb(255,255,255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+                                </property>
+                                <property name="text">
+                                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mod 路径&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                </property>
+                                <property name="textFormat">
+                                 <enum>Qt::AutoText</enum>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="browser_btn">
+                                <property name="sizePolicy">
+                                 <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                                  <horstretch>0</horstretch>
+                                  <verstretch>0</verstretch>
+                                 </sizepolicy>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">QPushButton {
 	border: 2px solid rgb(51,51,51);
 	border-radius: 5px;	
 	color:rgb(255,255,255);
@@ -1503,53 +1438,230 @@ QPushButton:disabled {
 	border: 2px solid rgb(112,112,112);
 	background-color: rgb(112,112,112);
 }</string>
-                    </property>
-                    <property name="text">
-                     <string>Connect</string>
-                    </property>
-                   </widget>
-                   <widget class="QLabel" name="label_5">
-                    <property name="geometry">
-                     <rect>
-                      <x>33</x>
-                      <y>152</y>
-                      <width>100</width>
-                      <height>25</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>100</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Segoe UI</family>
-                      <pointsize>14</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color:rgb(255,255,255);</string>
-                    </property>
-                    <property name="text">
-                     <string>Proxy :</string>
-                    </property>
+                                </property>
+                                <property name="text">
+                                 <string>选择...</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <spacer name="horizontalSpacer">
+                                <property name="orientation">
+                                 <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                 <size>
+                                  <width>40</width>
+                                  <height>20</height>
+                                 </size>
+                                </property>
+                               </spacer>
+                              </item>
+                             </layout>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="file_path">
+                             <property name="minimumSize">
+                              <size>
+                               <width>400</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>500</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Arial Black</family>
+                               <pointsize>9</pointsize>
+                               <weight>10</weight>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color:rgb(255,255,255);
+font: 87 9pt &quot;Arial Black&quot;;
+background-color: rgb(51,51,51);</string>
+                             </property>
+                             <property name="text">
+                              <string/>
+                             </property>
+                             <property name="textFormat">
+                              <enum>Qt::AutoText</enum>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="Input_3" native="true">
+                          <property name="layoutDirection">
+                           <enum>Qt::LeftToRight</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_10">
+                           <item>
+                            <widget class="QLabel" name="label_modName">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Arial Black</family>
+                               <pointsize>9</pointsize>
+                               <weight>10</weight>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color:rgb(255,255,255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>标题</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="input_3">
+                             <property name="minimumSize">
+                              <size>
+                               <width>400</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>500</width>
+                               <height>25</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>12</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QLineEdit {
+	color:rgb(255,255,255);
+	border:2px solid rgb(51,51,51);
+	border-radius:4px;
+	background:rgb(51,51,51);
+}
+
+QLineEdit:disabled {
+	color:rgb(255,255,255);
+	border:2px solid rgb(112,112,112);
+	border-radius:4px;
+	background:rgb(112,112,112);
+}
+
+QLineEdit:focus
+{
+    border: 2px solid #006080;
+}</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="Input_4" native="true">
+                          <property name="layoutDirection">
+                           <enum>Qt::LeftToRight</enum>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_11">
+                           <item>
+                            <widget class="QLabel" name="label_des">
+                             <property name="minimumSize">
+                              <size>
+                               <width>100</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Arial Black</family>
+                               <pointsize>9</pointsize>
+                               <weight>10</weight>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color:rgb(255,255,255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+                             </property>
+                             <property name="text">
+                              <string>描述</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QTextEdit" name="textEdit">
+                             <property name="minimumSize">
+                              <size>
+                               <width>0</width>
+                               <height>600</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QTextEdit{
+	border: 2px solid rgb(51,51,51);
+	border-radius: 5px;	
+	color:rgb(255,255,255);
+	background-color: rgb(51,51,51);
+}
+QTextEdit:focus
+{
+    border: 2px solid #006080;
+}</string>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Mod简介描述</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="verticalSpacer">
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>20</width>
+                            <height>117</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="widget" native="true">
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </widget>
-                 </item>
-                 <item>
-                  <spacer name="verticalSpacer_2">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>162</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                 </layout>
                </widget>
