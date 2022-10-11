@@ -1414,6 +1414,9 @@ QLineEdit:focus
     border: 2px solid #006080;
 }</string>
                              </property>
+                             <property name="placeholderText">
+                              <string>为空会创建新的工坊条目.....</string>
+                             </property>
                             </widget>
                            </item>
                           </layout>

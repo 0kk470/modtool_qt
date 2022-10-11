@@ -5,8 +5,6 @@
 #include <QDebug>
 #include <QObject>
 
-class CSteamManage;
-
 #define API_CHECK if(!IsInitialized()) \
                     {\
                         qDebug("错误，Steam未初始化,无法调用对应API:%s",Q_FUNC_INFO); \
