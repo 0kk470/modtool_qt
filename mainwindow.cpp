@@ -13,9 +13,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bn_max, &QPushButton::clicked, this, &MainWindow::OnMaxmizeBtnClick);
     connect(ui->browser_btn, &QPushButton::clicked, this, &MainWindow::OnModPathBtnClick);
 
+
     m_LeftBtnGroup = new QButtonGroup(this);
     m_LeftBtnGroup->addButton(ui->bn_home, 0);
     m_LeftBtnGroup->addButton(ui->bn_cloud, 1);
+    for(auto btn: m_LeftBtnGroup->buttons())
+    {
+        btn->setCheckable(true);
+    }
     connect(m_LeftBtnGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &MainWindow::OnPageBtnClick);
     if ( !SteamAPI_Init() )
     {

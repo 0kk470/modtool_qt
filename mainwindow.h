@@ -10,6 +10,7 @@
 #include <QResizeEvent>
 #include <QCursor>
 #include <QFileDialog>
+#include "csteammanager.h"
 #include "steam_api.h"
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +31,7 @@ private slots:
   void OnPageBtnClick(int idx);
   void OnModPathBtnClick();
   void OnUploadBtnClick();
+
 private:
   Ui::MainWindow *ui;
   QButtonGroup* m_LeftBtnGroup;

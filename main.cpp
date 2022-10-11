@@ -20,9 +20,9 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    QTimer timer(w);
-    QTimer::connect(&timer, &QTimer::timeout, &w, &UpdateSteamMessage);
-    timer.start(frameTime);
+    QTimer* timer = new QTimer(&w);
+    QTimer::connect(timer, &QTimer::timeout, &w, &UpdateSteamMessage);
+    timer->start(frameTime);
 
     return a.exec();
 }

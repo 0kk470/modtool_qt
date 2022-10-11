@@ -17,19 +17,37 @@ QGroupBox{
 
 						------> SCROLLBAR: WIDGET: VERTICAL
 
-QScrollBar:vertical {
-	background:rgb(51,51,51);
-    	width:20px;
-    	margin: 0px 0px 0px 0px;
+QScrollBar:vertical
+{
+       border: none;
+       background-color: grey;
+       width: 12px;
 }
-QScrollBar::handle:vertical {
-    	background:rgb(0,143,170);
+ 
+QScrollBar::handle:vertical
+{
+       background-color: rgba(255,255,255,1);
+       min-height: 30px;
+	  border-radius:3px;
+	  width: 12px;
+   }
+ 
+QScrollBar::add-line:vertical
+{
+       border: none;
+       height: 0px;
+ }
+ 
+ QScrollBar::sub-line:vertical
+{
+       border: none;
+       height: 0px;
 }
-QScrollBar::add-page:vertical {
- 	background:rgb(51,51,51);
-}
-QScrollBar::sub-page:vertical {
- 	background:rgb(51,51,51);
+ 
+ QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+ {	
+	background:transparent;
+      border-radius:3px;
 }
 ---------------------------------------------------------------------------------------------
 						------> LINE EDIT WIDGET: Test fields:
