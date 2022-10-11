@@ -18,7 +18,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>250</width>
+    <width>300</width>
     <height>150</height>
    </size>
   </property>
@@ -108,25 +108,6 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="lab_icon">
-           <property name="minimumSize">
-            <size>
-             <width>35</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>35</width>
-             <height>35</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QLabel" name="lab_heading">
            <property name="font">
             <font>
@@ -195,7 +176,7 @@ QPushButton:pressed {
 </string>
            </property>
            <property name="text">
-            <string/>
+            <string>确认</string>
            </property>
           </widget>
          </item>

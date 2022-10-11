@@ -14,7 +14,24 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->browser_btn, &QPushButton::clicked, this, &MainWindow::OnModPathBtnClick);
     connect(ui->preview_btn, &QPushButton::clicked, this, &MainWindow::OnPerviewPathBtnClick);
     connect(ui->bn_upload_2, &QPushButton::clicked, this, &MainWindow::OnUploadBtnClick);
+    connect(ISteamManager, &CSteamManager::signal_ItemCreateSuccess, this, &MainWindow::OnItemCreateSuccess);
+    connect(ISteamManager, &CSteamManager::signal_ItemCreateFail, this, &MainWindow::OnItemCreateFail);
+    connect(ISteamManager, &CSteamManager::signal_ItemSubmitSuccess, this, &MainWindow::OnItemSubmitSuccess);
+    connect(ISteamManager, &CSteamManager::signal_ItemSubmitFail, this, &MainWindow::OnItemSubmitFail);
 
+    InitPageButtons();
+    CheckSteamInit();
+    LoadModSettings();
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::InitPageButtons()
+{
     m_LeftBtnGroup = new QButtonGroup(this);
     m_LeftBtnGroup->addButton(ui->bn_home, 0);
     m_LeftBtnGroup->addButton(ui->bn_cloud, 1);
@@ -23,7 +40,11 @@ MainWindow::MainWindow(QWidget *parent)
         btn->setCheckable(true);
     }
     connect(m_LeftBtnGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, &MainWindow::OnPageBtnClick);
-    if ( !SteamAPI_Init() )
+}
+
+void MainWindow::CheckSteamInit()
+{
+    if (!ISteamManager->IsInitialized())
     {
         QMessageBox::warning(this,"提示", "Steam Api初始化失败, Steam相关功能将失效");
         qDebug( "Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n" );
@@ -34,16 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
         const char* pchName = SteamFriends()->GetPersonaName();
         ui->lab_user->setText(pchName);
     }
-    connect(ISteamManager, &CSteamManager::signal_ItemCreateSuccess, this, &MainWindow::OnItemCreateSuccess);
-    connect(ISteamManager, &CSteamManager::signal_ItemCreateFail, this, &MainWindow::OnItemCreateFail);
-    connect(ISteamManager, &CSteamManager::signal_ItemSubmitSuccess, this, &MainWindow::OnItemSubmitSuccess);
-    connect(ISteamManager, &CSteamManager::signal_ItemSubmitFail, this, &MainWindow::OnItemSubmitFail);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
 
 void MainWindow::resizeEvent(QResizeEvent* event)
 {
@@ -72,6 +85,31 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
         m_PrevPos = QCursor::pos();
         move(pos() - offset);
     }
+}
+
+void MainWindow::SaveModSettings(PublishedFileId_t m_nPublishedFileId)
+{
+    QSettings settings;
+    settings.setValue("mod/mod_id", m_nPublishedFileId);
+    settings.setValue("mod/mod_name", ui->mod_name_input->text());
+    settings.setValue("mod/description", ui->textEdit_des->toPlainText());
+    settings.setValue("mod/note", ui->textEdit_note->toPlainText());
+    settings.setValue("mod/modContentPath", ui->file_path->text());
+    settings.setValue("mod/previewImgPath", ui->preview_path->text());
+    settings.sync();
+}
+
+void MainWindow::LoadModSettings()
+{
+    QSettings settings;
+    qDebug() << settings.value("mod/mod_id").value<QString>();
+    ui->modid_input->setText(settings.value("mod/mod_id").toString());
+    ui->mod_name_input->setText(settings.value("mod/mod_name").toString());
+    ui->textEdit_des->setText(settings.value("mod/description").toString());
+    ui->textEdit_note->setText(settings.value("mod/note").toString());
+    ui->file_path->setText(settings.value("mod/modContentPath").toString());;
+    ui->preview_path->setText(settings.value("mod/previewImgPath").toString());
+    //detail.visibilty = k_ERemoteStoragePublishedFileVisibilityUnlisted;
 }
 
 
@@ -124,7 +162,6 @@ void MainWindow::OnPerviewPathBtnClick()
 
 void MainWindow::OnUploadBtnClick()
 {
-    AppId_t appId = SteamUtils()->GetAppID();
     PublishedFileId_t modId = 0;
     bool isValidId = false;
     modId = ui->modid_input->text().toULong(&isValidId);
@@ -141,8 +178,8 @@ void MainWindow::OnUploadBtnClick()
 void MainWindow::SubmitMod(PublishedFileId_t modId)
 {
     SteamUgc_UpdateDetail_t detail;
-    detail.itemTitle = ui->label_modName->text().toStdString();
-    detail.itemDescription = ui->textEdit->toPlainText().toStdString();
+    detail.itemTitle = ui->mod_name_input->text().toStdString();
+    detail.itemDescription = ui->textEdit_des->toPlainText().toStdString();
     detail.changeNote = ui->textEdit_note->toPlainText().toStdString();
     detail.fileFolder = ui->file_path->text().toStdString();
     detail.previewImagePath = ui->preview_path->text().toStdString();
@@ -150,7 +187,6 @@ void MainWindow::SubmitMod(PublishedFileId_t modId)
     detail.visibilty = k_ERemoteStoragePublishedFileVisibilityUnlisted;
     ISteamManager->Send_SubmitItemUpdate(detail);
 }
-
 
 void MainWindow::OnItemCreateFail(EResult m_eResult)
 {
@@ -175,6 +211,7 @@ void MainWindow::OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPub
 {
     auto msg = QString("提交WorkShopItem 成功");
     QMessageBox::information(this, "提交成功", msg);
+    SaveModSettings(m_nPublishedFileId);
 }
 
 

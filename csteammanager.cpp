@@ -16,23 +16,36 @@ CSteamManager* CSteamManager::GetInstance()
     return &_instance;
 }
 
+void CSteamManager::Init()
+{
+    if(!SteamAPI_Init())
+    {
+        return;
+    }
+    m_IsInit = true;
+}
+
+bool CSteamManager::IsInitialized() const
+{
+    return m_IsInit;
+}
+
 
 void CSteamManager::Send_CreateItem()
 {
-    qDebug("请求创建mod...");
-
+    API_CHECK
     SteamAPICall_t hSteamAPICall = SteamUGC()->CreateItem(SteamUtils()->GetAppID() , k_EWorkshopFileTypeCommunity);
     m_CreateItemResult.Set(hSteamAPICall, this, &CSteamManager::On_ItemCreate_Result);
 }
 
 void CSteamManager::Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailInfo)
 {
-    qDebug("请求更新mod");
+    API_CHECK
     UGCUpdateHandle_t handle = SteamUGC()->StartItemUpdate(SteamUtils()->GetAppID(), detailInfo.m_nPublishedFileId);
 
     SteamUGC()->SetItemTitle(handle, detailInfo.itemTitle.c_str());
     SteamUGC()->SetItemDescription(handle, detailInfo.itemDescription.c_str());
-    SteamUGC()->SetItemUpdateLanguage(handle, "None");
+    SteamUGC()->SetItemUpdateLanguage(handle, "English");
     SteamUGC()->SetItemVisibility(handle, detailInfo.visibilty);
     SteamUGC()->SetItemContent(handle, detailInfo.fileFolder.c_str());
     SteamUGC()->SetItemPreview(handle, detailInfo.previewImagePath.c_str());

@@ -935,7 +935,7 @@ QPushButton:checked {
                 <string notr="true"/>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="page_home">
                 <property name="enabled">
@@ -1814,7 +1814,7 @@ font: 87 9pt &quot;Arial Black&quot;;</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QLineEdit" name="input_3">
+                            <widget class="QLineEdit" name="mod_name_input">
                              <property name="minimumSize">
                               <size>
                                <width>400</width>
@@ -1918,7 +1918,7 @@ font: 87 9pt &quot;Arial Black&quot;;</string>
                             </widget>
                            </item>
                            <item>
-                            <widget class="QTextEdit" name="textEdit">
+                            <widget class="QTextEdit" name="textEdit_des">
                              <property name="sizePolicy">
                               <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
                                <horstretch>0</horstretch>

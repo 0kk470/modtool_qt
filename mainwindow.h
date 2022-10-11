@@ -10,6 +10,7 @@
 #include <QResizeEvent>
 #include <QCursor>
 #include <QFileDialog>
+#include <QSettings>
 #include "csteammanager.h"
 #include "steam_api.h"
 
@@ -50,5 +51,9 @@ private:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void SubmitMod(PublishedFileId_t modId);
+    void SaveModSettings(PublishedFileId_t modId);
+    void LoadModSettings();
+    void InitPageButtons();
+    void CheckSteamInit();
 };
 #endif // MAINWINDOW_H

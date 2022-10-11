@@ -17,8 +17,15 @@ void UpdateSteamMessage()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QCoreApplication::setOrganizationName("jyx2_community");
+    QCoreApplication::setApplicationName("mod_tool");
+
+    ISteamManager->Init();
+
     MainWindow w;
     w.show();
+
 
     QTimer* timer = new QTimer(&w);
     QTimer::connect(timer, &QTimer::timeout, &w, &UpdateSteamMessage);
