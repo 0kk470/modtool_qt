@@ -36,7 +36,6 @@ private slots:
   //Steam回调
   void OnItemCreateFail(EResult m_eResult);
   void OnItemCreateSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
-
   void OnItemSubmitFail(EResult m_eResult);
   void OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
 
