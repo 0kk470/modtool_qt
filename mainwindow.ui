@@ -1292,7 +1292,7 @@ font: 87 15pt &quot;Arial Black&quot;;</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QWidget" name="Input_1" native="true">
+                         <widget class="QWidget" name="Input_0" native="true">
                           <property name="layoutDirection">
                            <enum>Qt::LeftToRight</enum>
                           </property>
@@ -1369,7 +1369,7 @@ QLineEdit:focus
                          </widget>
                         </item>
                         <item>
-                         <widget class="QWidget" name="Input_2" native="true">
+                         <widget class="QWidget" name="Input_1" native="true">
                           <property name="layoutDirection">
                            <enum>Qt::LeftToRight</enum>
                           </property>
@@ -1544,7 +1544,7 @@ font: 87 9pt &quot;Arial Black&quot;;</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QWidget" name="Input_6" native="true">
+                         <widget class="QWidget" name="Input_2" native="true">
                           <property name="sizePolicy">
                            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                             <horstretch>0</horstretch>
