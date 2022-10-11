@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->bn_min, &QPushButton::clicked, this, &MainWindow::showMinimized);
     connect(ui->bn_max, &QPushButton::clicked, this, &MainWindow::OnMaxmizeBtnClick);
     connect(ui->browser_btn, &QPushButton::clicked, this, &MainWindow::OnModPathBtnClick);
-
+    connect(ui->preview_btn, &QPushButton::clicked, this, &MainWindow::OnPerviewPathBtnClick);
+    connect(ui->bn_upload_2, &QPushButton::clicked, this, &MainWindow::OnUploadBtnClick);
 
     m_LeftBtnGroup = new QButtonGroup(this);
     m_LeftBtnGroup->addButton(ui->bn_home, 0);
@@ -33,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent)
         const char* pchName = SteamFriends()->GetPersonaName();
         ui->lab_user->setText(pchName);
     }
+    connect(ISteamManager, &CSteamManager::signal_ItemCreateSuccess, this, &MainWindow::OnItemCreateSuccess);
+    connect(ISteamManager, &CSteamManager::signal_ItemCreateFail, this, &MainWindow::OnItemCreateFail);
+    connect(ISteamManager, &CSteamManager::signal_ItemSubmitSuccess, this, &MainWindow::OnItemSubmitSuccess);
+    connect(ISteamManager, &CSteamManager::signal_ItemSubmitFail, this, &MainWindow::OnItemSubmitFail);
 }
 
 MainWindow::~MainWindow()
@@ -61,11 +66,11 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->buttons() == Qt::MouseButton::LeftButton)
     {
-       if(isMaximized())
-           return;
-       auto offset = m_PrevPos - QCursor::pos();
-       m_PrevPos = QCursor::pos();
-       move(pos() - offset);
+        if(isMaximized())
+            return;
+        auto offset = m_PrevPos - QCursor::pos();
+        m_PrevPos = QCursor::pos();
+        move(pos() - offset);
     }
 }
 
@@ -89,11 +94,11 @@ void MainWindow::OnCloseBtnClick()
 
 void MainWindow::OnPageBtnClick(int idx)
 {
-    auto btns = m_LeftBtnGroup->buttons();
-    for(auto i = 0;i < btns.size(); ++i )
-    {
-        btns[i]->setChecked(i == idx);
-    }
+    //    auto btns = m_LeftBtnGroup->buttons();
+    //    for(auto i = 0;i < btns.size(); ++i )
+    //    {
+    //        btns[i]->setChecked(i == idx);
+    //    }
     for(auto i = 0; i < ui->stackedWidget->count(); ++i)
     {
         ui->stackedWidget->widget(i)->setVisible(i == idx);
@@ -103,17 +108,73 @@ void MainWindow::OnPageBtnClick(int idx)
 void MainWindow::OnModPathBtnClick()
 {
     QString dirName = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-                                                "/home",
-                                                QFileDialog::ShowDirsOnly
-                                                | QFileDialog::DontResolveSymlinks);
+                                                        "/home",
+                                                        QFileDialog::ShowDirsOnly
+                                                        | QFileDialog::DontResolveSymlinks);
     ui->file_path->setText(dirName);
+}
+
+void MainWindow::OnPerviewPathBtnClick()
+{
+    QString filePath = QFileDialog::getOpenFileName(this, tr("Select Image"),
+                                                    "/home",
+                                                    tr("Images (*.png *.jpg)"));
+    ui->preview_path->setText(filePath);
 }
 
 void MainWindow::OnUploadBtnClick()
 {
     AppId_t appId = SteamUtils()->GetAppID();
-    SteamAPICall_t handle = SteamUGC()->CreateItem(appId,EWorkshopFileType::k_EWorkshopFileTypeCommunity);
-    //TODO
+    PublishedFileId_t modId = 0;
+    bool isValidId = false;
+    modId = ui->modid_input->text().toULong(&isValidId);
+    if(!isValidId || modId <= 0)
+    {
+        ISteamManager->Send_CreateItem();
+    }
+    else
+    {
+        SubmitMod(modId);
+    }
+}
+
+void MainWindow::SubmitMod(PublishedFileId_t modId)
+{
+    SteamUgc_UpdateDetail_t detail;
+    detail.itemTitle = ui->label_modName->text().toStdString();
+    detail.itemDescription = ui->textEdit->toPlainText().toStdString();
+    detail.changeNote = ui->textEdit_note->toPlainText().toStdString();
+    detail.fileFolder = ui->file_path->text().toStdString();
+    detail.previewImagePath = ui->preview_path->text().toStdString();
+    detail.m_nPublishedFileId = modId;
+    detail.visibilty = k_ERemoteStoragePublishedFileVisibilityUnlisted;
+    ISteamManager->Send_SubmitItemUpdate(detail);
+}
+
+
+void MainWindow::OnItemCreateFail(EResult m_eResult)
+{
+    auto msg = QString("创建WorkShopItem 失败\n 错误码EResult:{%1}").arg(m_eResult);
+    QMessageBox::critical(this,"错误", msg);
+}
+
+void MainWindow::OnItemCreateSuccess(EResult m_eResult, PublishedFileId_t publishedId)
+{
+    QString modId = QString("%1").arg(publishedId);
+    ui->modid_input->setText(modId);
+    SubmitMod(publishedId);
+}
+
+void MainWindow::OnItemSubmitFail(EResult m_eResult)
+{
+    auto msg = QString("提交WorkShopItem 失败\n 错误码EResult:{%1}").arg(m_eResult);
+    QMessageBox::critical(this, "错误", msg);
+}
+
+void MainWindow::OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId)
+{
+    auto msg = QString("提交WorkShopItem 成功");
+    QMessageBox::information(this, "提交成功", msg);
 }
 
 

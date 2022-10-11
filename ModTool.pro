@@ -21,6 +21,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    SteamApiData.h \
     csteammanager.h \
     mainwindow.h
 

@@ -31,6 +31,14 @@ private slots:
   void OnPageBtnClick(int idx);
   void OnModPathBtnClick();
   void OnUploadBtnClick();
+  void OnPerviewPathBtnClick();
+
+  //Steam回调
+  void OnItemCreateFail(EResult m_eResult);
+  void OnItemCreateSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
+
+  void OnItemSubmitFail(EResult m_eResult);
+  void OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
 
 private:
   Ui::MainWindow *ui;
@@ -42,6 +50,6 @@ private:
     void resizeEvent(QResizeEvent* event);
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-
+    void SubmitMod(PublishedFileId_t modId);
 };
 #endif // MAINWINDOW_H
