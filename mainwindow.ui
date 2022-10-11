@@ -1539,7 +1539,7 @@ QPushButton:disabled {
 }</string>
                                 </property>
                                 <property name="text">
-                                 <string>选择...</string>
+                                 <string>浏览</string>
                                 </property>
                                </widget>
                               </item>
@@ -1584,7 +1584,10 @@ QPushButton:disabled {
                              </property>
                              <property name="styleSheet">
                               <string notr="true">color:rgb(255,255,255);
-font: 87 9pt &quot;Arial Black&quot;;</string>
+font: 87 9pt &quot;Arial Black&quot;;
+	border:2px solid rgb(51,51,51);
+	border-radius:4px;
+	background:rgb(51,51,51);</string>
                              </property>
                              <property name="text">
                               <string/>
@@ -1726,7 +1729,7 @@ QPushButton:disabled {
 }</string>
                                 </property>
                                 <property name="text">
-                                 <string>选择...</string>
+                                 <string>浏览</string>
                                 </property>
                                </widget>
                               </item>
@@ -1771,7 +1774,10 @@ QPushButton:disabled {
                              </property>
                              <property name="styleSheet">
                               <string notr="true">color:rgb(255,255,255);
-font: 87 9pt &quot;Arial Black&quot;;</string>
+font: 87 9pt &quot;Arial Black&quot;;
+	border:2px solid rgb(51,51,51);
+	border-radius:4px;
+	background:rgb(51,51,51);</string>
                              </property>
                              <property name="text">
                               <string/>
