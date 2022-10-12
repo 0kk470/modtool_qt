@@ -36,6 +36,7 @@ public:
 
   bool Send_CreateItem();
   bool Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailInfo);
+  EItemUpdateStatus GetItemUpdateProgress(UGCUpdateHandle_t handle, uint64 *punBytesProcessed, uint64* punBytesTotal);
 
 signals:
   void signal_ItemCreateFail(EResult m_eResult);
@@ -44,6 +45,7 @@ signals:
   void signal_ItemSubmitFail(EResult m_eResult);
   void signal_ItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
   void signal_CallAPI_Fail(const QString& apiName);
+  void signal_BeginItemUpdate(UGCUpdateHandle_t handler);
 
 private:
   bool m_IsInit = false;

@@ -1,4 +1,4 @@
-#ifndef OVERLAYWIDGET_H
+﻿#ifndef OVERLAYWIDGET_H
 #define OVERLAYWIDGET_H
 
 #include <QtGui>

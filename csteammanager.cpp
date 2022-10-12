@@ -1,4 +1,4 @@
-#include "csteammanager.h"
+﻿#include "csteammanager.h"
 
 CSteamManager::CSteamManager()
 {
@@ -53,6 +53,7 @@ bool CSteamManager::Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailI
 
     SteamAPICall_t submit_item_call = SteamUGC()->SubmitItemUpdate(handle, detailInfo.changeNote.c_str());
     m_SubmitItemUpdateResult.Set(submit_item_call, this, &CSteamManager::On_ItemSubmit_Result);
+    emit signal_BeginItemUpdate(handle);
     return true;
 }
 
@@ -79,4 +80,11 @@ void CSteamManager::On_ItemSubmit_Result(SubmitItemUpdateResult_t *pCallback, bo
     }
     qDebug("请求更新mod成功");
     emit signal_ItemSubmitSuccess(pCallback->m_eResult, pCallback->m_nPublishedFileId);
+}
+
+EItemUpdateStatus CSteamManager::GetItemUpdateProgress(UGCUpdateHandle_t handle, uint64 *punBytesProcessed, uint64* punBytesTotal)
+{
+    if(!IsInitialized())
+        return EItemUpdateStatus::k_EItemUpdateStatusInvalid;
+    return SteamUGC()->GetItemUpdateProgress(handle, punBytesProcessed, punBytesTotal);
 }

@@ -923,7 +923,7 @@ QPushButton:checked {
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_home">
              <property name="enabled">
@@ -1016,9 +1016,9 @@ QScrollBar::add-line:vertical
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>0</y>
+                   <y>-188</y>
                    <width>688</width>
-                   <height>962</height>
+                   <height>1043</height>
                   </rect>
                  </property>
                  <property name="sizePolicy">
@@ -1619,6 +1619,90 @@ QLineEdit:focus
     border: 2px solid #006080;
 }</string>
                           </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="visibility" native="true">
+                       <layout class="QVBoxLayout" name="verticalLayout_5">
+                        <item>
+                         <widget class="QLabel" name="label_visibility">
+                          <property name="minimumSize">
+                           <size>
+                            <width>100</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>30</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <family>Arial Black</family>
+                            <pointsize>9</pointsize>
+                            <weight>10</weight>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color:rgb(255,255,255);
+font: 87 9pt &quot;Arial Black&quot;;</string>
+                          </property>
+                          <property name="text">
+                           <string>可见性</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="buttons" native="true">
+                          <layout class="QHBoxLayout" name="horizontalLayout_14">
+                           <item>
+                            <widget class="QRadioButton" name="radioButton_1">
+                             <property name="styleSheet">
+                              <string notr="true">color:white;</string>
+                             </property>
+                             <property name="text">
+                              <string>公开</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="radioButton_2">
+                             <property name="styleSheet">
+                              <string notr="true">color:white;</string>
+                             </property>
+                             <property name="text">
+                              <string>仅限好友</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="radioButton_3">
+                             <property name="styleSheet">
+                              <string notr="true">color:white;</string>
+                             </property>
+                             <property name="text">
+                              <string>隐藏</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="radioButton_4">
+                             <property name="styleSheet">
+                              <string notr="true">color:white;</string>
+                             </property>
+                             <property name="text">
+                              <string>非公开</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
                          </widget>
                         </item>
                        </layout>
