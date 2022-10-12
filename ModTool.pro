@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT       += webenginewidgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -23,7 +23,8 @@ SOURCES += \
 HEADERS += \
     SteamApiData.h \
     csteammanager.h \
-    mainwindow.h
+    mainwindow.h \
+    ui/overlaywidget.h\
 
 FORMS += \
     mainwindow.ui\
@@ -44,10 +45,17 @@ win32
     }else{
         LIBS += -L$$PWD/steam/win32 -lsteam_api
     }
+
+    QMAKE_CFLAGS += /utf-8
+    QMAKE_CXXFLAGS += /utf-8
 }
 
 unix:LIBS += -L$$PWD/steam/osx -lsteam_api
 
 
-INCLUDEPATH += $$PWD/steam
+INCLUDEPATH += $$PWD/steam \
+               $$PWD/ui
 DEPENDPATH += $$PWD/steam
+
+RESOURCES += \
+    mainwindow.qrc

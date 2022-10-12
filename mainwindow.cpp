@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -18,16 +18,25 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ISteamManager, &CSteamManager::signal_ItemCreateFail, this, &MainWindow::OnItemCreateFail);
     connect(ISteamManager, &CSteamManager::signal_ItemSubmitSuccess, this, &MainWindow::OnItemSubmitSuccess);
     connect(ISteamManager, &CSteamManager::signal_ItemSubmitFail, this, &MainWindow::OnItemSubmitFail);
+    connect(ISteamManager, &CSteamManager::signal_CallAPI_Fail, this, &MainWindow::OnCallApiFail);
 
     InitPageButtons();
     CheckSteamInit();
     LoadModSettings();
+
+    m_UploadingMask = new LoadingOverlay(ui->page_cloud);
+    m_UploadingMask->hide();
+
+    QWebEngineView *view = new QWebEngineView(ui->frame_home_main);
+    view->load(QUrl("https://github.com/jynew/jynew"));
+    ui->frame_home_main->layout()->addWidget(view);
 }
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_UploadingMask;
 }
 
 void MainWindow::InitPageButtons()
@@ -46,7 +55,7 @@ void MainWindow::CheckSteamInit()
 {
     if (!ISteamManager->IsInitialized())
     {
-        QMessageBox::warning(this,"提示", "Steam Api初始化失败, Steam相关功能将失效");
+        QMessageBox::warning(this,"提示", "Steam初始化失败, 请先登录Steam客户端");
         qDebug( "Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed).\n" );
         ui->lab_user->setText("No Steam User");
     }
@@ -62,12 +71,13 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 {
     if(isMaximized())
     {
-        ui->bn_max->setIcon(QIcon("icons/1x/restore.png"));
+        ui->bn_max->setIcon(QIcon(":/icons/1x/restore.png"));
     }
     else
     {
-        ui->bn_max->setIcon(QIcon("icons/1x/max.png"));
+        ui->bn_max->setIcon(QIcon(":/icons/1x/max.png"));
     }
+    QMainWindow::resizeEvent(event);
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
@@ -132,14 +142,16 @@ void MainWindow::OnCloseBtnClick()
 
 void MainWindow::OnPageBtnClick(int idx)
 {
-    //    auto btns = m_LeftBtnGroup->buttons();
-    //    for(auto i = 0;i < btns.size(); ++i )
-    //    {
-    //        btns[i]->setChecked(i == idx);
-    //    }
     for(auto i = 0; i < ui->stackedWidget->count(); ++i)
     {
-        ui->stackedWidget->widget(i)->setVisible(i == idx);
+        if(i == idx)
+        {
+            ui->stackedWidget->widget(i)->show();
+        }
+        else
+        {
+            ui->stackedWidget->widget(i)->hide();
+        }
     }
 }
 
@@ -167,6 +179,7 @@ void MainWindow::OnUploadBtnClick()
     modId = ui->modid_input->text().toULong(&isValidId);
     if(!isValidId || modId <= 0)
     {
+        m_UploadingMask->DisplayNextLine("正在创建Steam工坊新物品...");
         ISteamManager->Send_CreateItem();
     }
     else
@@ -175,8 +188,16 @@ void MainWindow::OnUploadBtnClick()
     }
 }
 
+void MainWindow::HideUploadMask()
+{
+    if(m_UploadingMask->isVisible())
+        m_UploadingMask->hide();
+}
+
+
 void MainWindow::SubmitMod(PublishedFileId_t modId)
 {
+    m_UploadingMask->DisplayNextLine("正在提交Steam工坊物品更新...");
     SteamUgc_UpdateDetail_t detail;
     detail.itemTitle = ui->mod_name_input->text().toStdString();
     detail.itemDescription = ui->textEdit_des->toPlainText().toStdString();
@@ -188,10 +209,16 @@ void MainWindow::SubmitMod(PublishedFileId_t modId)
     ISteamManager->Send_SubmitItemUpdate(detail);
 }
 
+void MainWindow::OnCallApiFail(const QString& funcName)
+{
+    HideUploadMask();
+}
+
 void MainWindow::OnItemCreateFail(EResult m_eResult)
 {
     auto msg = QString("创建WorkShopItem 失败\n 错误码EResult:{%1}").arg(m_eResult);
     QMessageBox::critical(this,"错误", msg);
+    HideUploadMask();
 }
 
 void MainWindow::OnItemCreateSuccess(EResult m_eResult, PublishedFileId_t publishedId)
@@ -205,6 +232,8 @@ void MainWindow::OnItemSubmitFail(EResult m_eResult)
 {
     auto msg = QString("提交WorkShopItem 失败\n 错误码EResult:{%1}").arg(m_eResult);
     QMessageBox::critical(this, "错误", msg);
+
+    HideUploadMask();
 }
 
 void MainWindow::OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId)
@@ -212,6 +241,8 @@ void MainWindow::OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPub
     auto msg = QString("提交WorkShopItem 成功");
     QMessageBox::information(this, "提交成功", msg);
     SaveModSettings(m_nPublishedFileId);
+
+    HideUploadMask();
 }
 
 

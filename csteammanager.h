@@ -1,17 +1,21 @@
-#ifndef CSTEAMMANAGER_H
+﻿#ifndef CSTEAMMANAGER_H
 #define CSTEAMMANAGER_H
 #include "steam_api.h"
 #include "SteamApiData.h"
 #include <QDebug>
 #include <QObject>
+#include <QMessageBox>
 
-#define API_CHECK if(!IsInitialized()) \
+#define API_CHECK if(!IsInitialized())\
                     {\
-                        qDebug("错误，Steam未初始化,无法调用对应API:%s",Q_FUNC_INFO); \
-                        return;\
+                        qDebug("错误，Steam未初始化,无法调用对应API:%s",Q_FUNC_INFO);\
+                        QMessageBox::critical(nullptr, "错误","Steam未初始化,无法进行该操作\n\n请尝试启动Steam客户端后重启该工具");\
+                        emit signal_CallAPI_Fail(Q_FUNC_INFO);\
+                        return false;\
                     }\
-                    else \
+                    else{\
                         qDebug("调用成功 [%s]", Q_FUNC_INFO);\
+                    }\
 
 #define ISteamManager CSteamManager::GetInstance()
 
@@ -30,8 +34,8 @@ public:
   void Init();
   bool IsInitialized() const;
 
-  void Send_CreateItem();
-  void Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailInfo);
+  bool Send_CreateItem();
+  bool Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailInfo);
 
 signals:
   void signal_ItemCreateFail(EResult m_eResult);
@@ -39,6 +43,7 @@ signals:
 
   void signal_ItemSubmitFail(EResult m_eResult);
   void signal_ItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
+  void signal_CallAPI_Fail(const QString& apiName);
 
 private:
   bool m_IsInit = false;

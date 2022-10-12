@@ -31,14 +31,15 @@ bool CSteamManager::IsInitialized() const
 }
 
 
-void CSteamManager::Send_CreateItem()
+bool CSteamManager::Send_CreateItem()
 {
     API_CHECK
     SteamAPICall_t hSteamAPICall = SteamUGC()->CreateItem(SteamUtils()->GetAppID() , k_EWorkshopFileTypeCommunity);
     m_CreateItemResult.Set(hSteamAPICall, this, &CSteamManager::On_ItemCreate_Result);
+    return true;
 }
 
-void CSteamManager::Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailInfo)
+bool CSteamManager::Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailInfo)
 {
     API_CHECK
     UGCUpdateHandle_t handle = SteamUGC()->StartItemUpdate(SteamUtils()->GetAppID(), detailInfo.m_nPublishedFileId);
@@ -52,7 +53,9 @@ void CSteamManager::Send_SubmitItemUpdate(const SteamUgc_UpdateDetail_t& detailI
 
     SteamAPICall_t submit_item_call = SteamUGC()->SubmitItemUpdate(handle, detailInfo.changeNote.c_str());
     m_SubmitItemUpdateResult.Set(submit_item_call, this, &CSteamManager::On_ItemSubmit_Result);
+    return true;
 }
+
 
 void CSteamManager::On_ItemCreate_Result(CreateItemResult_t *pCallback, bool bIOFailure)
 {

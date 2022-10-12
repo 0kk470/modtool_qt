@@ -11,6 +11,8 @@
 #include <QCursor>
 #include <QFileDialog>
 #include <QSettings>
+#include <QWebEngineView>
+#include "overlaywidget.h"
 #include "csteammanager.h"
 #include "steam_api.h"
 
@@ -39,11 +41,11 @@ private slots:
   void OnItemCreateSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
   void OnItemSubmitFail(EResult m_eResult);
   void OnItemSubmitSuccess(EResult m_eResult, PublishedFileId_t m_nPublishedFileId);
-
+  void OnCallApiFail(const QString& apiName);
 private:
   Ui::MainWindow *ui;
   QButtonGroup* m_LeftBtnGroup;
-
+  LoadingOverlay* m_UploadingMask;
   QPoint m_PrevPos;
 
 private:
@@ -55,5 +57,6 @@ private:
     void LoadModSettings();
     void InitPageButtons();
     void CheckSteamInit();
+    void HideUploadMask();
 };
 #endif // MAINWINDOW_H
