@@ -27,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_UploadingMask = new LoadingOverlay(ui->page_cloud);
     m_UploadingMask->hide();
 
-    QWebEngineView *view = new QWebEngineView(ui->frame_home_main);
+    QWebEngineView *view = new QWebEngineView(ui->page_home);
     view->load(QUrl("https://github.com/jynew/jynew"));
-    ui->frame_home_main->layout()->addWidget(view);
+    ui->page_home->layout()->addWidget(view);
 }
 
 
@@ -142,17 +142,7 @@ void MainWindow::OnCloseBtnClick()
 
 void MainWindow::OnPageBtnClick(int idx)
 {
-    for(auto i = 0; i < ui->stackedWidget->count(); ++i)
-    {
-        if(i == idx)
-        {
-            ui->stackedWidget->widget(i)->show();
-        }
-        else
-        {
-            ui->stackedWidget->widget(i)->hide();
-        }
-    }
+    ui->stackedWidget->setCurrentIndex(idx);
 }
 
 void MainWindow::OnModPathBtnClick()
