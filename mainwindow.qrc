@@ -23,5 +23,6 @@
         <file>icons/1x/smileAsset 1.png</file>
         <file>icons/1x/windAsset 51.png</file>
         <file>icons/1x/worldAsset 60.png</file>
+        <file>icons/1x/jyx2.ico</file>
     </qresource>
 </RCC>

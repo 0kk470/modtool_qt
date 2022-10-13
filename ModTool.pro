@@ -36,6 +36,8 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+RC_ICONS = icons/1x/jyx2.ico
+
 DEFINES += USE_x64
 
 win32
@@ -48,6 +50,7 @@ win32
 
     QMAKE_CFLAGS += /utf-8
     QMAKE_CXXFLAGS += /utf-8
+    DLLDESTDIR = bin
 }
 
 unix:LIBS += -L$$PWD/steam/osx -lsteam_api

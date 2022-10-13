@@ -1016,7 +1016,7 @@ QScrollBar::add-line:vertical
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>-188</y>
+                   <y>-588</y>
                    <width>688</width>
                    <height>1043</height>
                   </rect>
@@ -1890,7 +1890,7 @@ QTextEdit:focus
 }</string>
                           </property>
                           <property name="placeholderText">
-                           <string>Mod简介描述</string>
+                           <string>本次更新说明, 每次上传完成后都会在创意工坊生成一条改动说明...</string>
                           </property>
                          </widget>
                         </item>
