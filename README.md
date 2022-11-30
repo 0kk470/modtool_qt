@@ -12,4 +12,5 @@ modtool for jynew
 qwindeploy [exe生成路径]
 ```
 
+[Release Package下载](https://github.com/0kk470/modtool_qt/releases/tag/modtool)
 
