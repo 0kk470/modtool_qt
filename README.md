@@ -1,6 +1,6 @@
 # modtool_qt
 
-这是一个用于将《群侠传启动》相关mod上传至Steam创意工坊的工具。
+这是一个把 基于[《群侠传启动》](https://github.com/jynew/jynew)框架制作的相关mod 上传至Steam创意工坊的工具。
 
 在QtCreator打开项目后使用qmake直接编译即可。
 
