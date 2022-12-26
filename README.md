@@ -1,7 +1,8 @@
 # modtool_qt
-modtool for jynew
 
-使用QtCreator打开项目直接编译即可
+这是一个用于将《群侠传启动》相关mod上传至Steam创意工坊的工具。
+
+在QtCreator打开项目后使用qmake直接编译即可。
 
 ### Build for Windows
 
