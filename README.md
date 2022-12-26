@@ -2,7 +2,7 @@
 
 这是一个把 <b>基于[《群侠传, 启动》](https://github.com/jynew/jynew)框架制作的相关mod</b> 上传至Steam创意工坊的工具。
 
-在QtCreator打开项目后使用qmake直接编译即可。
+在QtCreator内打开项目后使用qmake直接构建即可。
 
 ### Build for Windows
 
